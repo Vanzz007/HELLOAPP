@@ -1,18 +1,31 @@
 package org.example;
 public class App {
 
-
     public static void main(String[] args) {
 
-        // Default value (UC3)
-        String name = "World";
-
-        // UC2: Check if user provided input
-        if (args.length > 0 && args[0] != null && !args[0].trim().isEmpty()) {
-            name = args[0].trim();
+        // If no names provided → default
+        if (args.length == 0) {
+            System.out.println("Hello, World!");
+            return;
         }
 
-        // Output (UC1 + UC2 + UC3)
-        System.out.println("Hello, " + name + "!");
+        // Build names string
+        StringBuilder nameBuilder = new StringBuilder();
+
+        for (int i = 0; i < args.length; i++) {
+            String name = args[i].trim();
+
+            // Skip empty inputs
+            if (name.isEmpty()) continue;
+
+            nameBuilder.append(name);
+
+            // Add comma only between names
+            if (i < args.length - 1) {
+                nameBuilder.append(", ");
+            }
+        }
+
+        System.out.println("Hello, " + nameBuilder.toString() + "!");
     }
 }
