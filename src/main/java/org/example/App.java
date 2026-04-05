@@ -10,29 +10,25 @@ public class App {
         }
 
         StringBuilder nameBuilder = new StringBuilder();
-        boolean first = true;
 
-        // Enhanced for loop
+        // Build string with delimiter
         for (String name : args) {
-
             name = name.trim();
 
-            // Skip empty inputs
-            if (name.isEmpty()) continue;
-
-            if (!first) {
-                nameBuilder.append(", ");
+            if (!name.isEmpty()) {
+                nameBuilder.append(name).append(", ");
             }
-
-            nameBuilder.append(name);
-            first = false;
         }
 
-        // Handle case where all inputs were empty
+        // If no valid names
         if (nameBuilder.length() == 0) {
             System.out.println("Hello, World!");
-        } else {
-            System.out.println("Hello, " + nameBuilder.toString() + "!");
+            return;
         }
+
+        // Remove trailing ", "
+        String finalNames = nameBuilder.substring(0, nameBuilder.length() - 2);
+
+        System.out.println("Hello, " + finalNames + "!");
     }
 }
