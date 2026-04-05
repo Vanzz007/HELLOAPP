@@ -3,29 +3,36 @@ public class App {
 
     public static void main(String[] args) {
 
-        // If no names provided → default
+        // Default case
         if (args.length == 0) {
             System.out.println("Hello, World!");
             return;
         }
 
-        // Build names string
         StringBuilder nameBuilder = new StringBuilder();
+        boolean first = true;
 
-        for (int i = 0; i < args.length; i++) {
-            String name = args[i].trim();
+        // Enhanced for loop
+        for (String name : args) {
+
+            name = name.trim();
 
             // Skip empty inputs
             if (name.isEmpty()) continue;
 
-            nameBuilder.append(name);
-
-            // Add comma only between names
-            if (i < args.length - 1) {
+            if (!first) {
                 nameBuilder.append(", ");
             }
+
+            nameBuilder.append(name);
+            first = false;
         }
 
-        System.out.println("Hello, " + nameBuilder.toString() + "!");
+        // Handle case where all inputs were empty
+        if (nameBuilder.length() == 0) {
+            System.out.println("Hello, World!");
+        } else {
+            System.out.println("Hello, " + nameBuilder.toString() + "!");
+        }
     }
 }
